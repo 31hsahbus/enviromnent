@@ -6,7 +6,7 @@ jobs:
        runs-on: ubuntu-latest
        environment: DEV
        steps:
-         - uses: action/checkout@v2
+         - uses: actions/checkout@v2
          - name: Run a script
            run: |
              echo "i am running a job in DEV environment"
@@ -18,7 +18,7 @@ jobs:
        environment: QA
        needs: DEV
        steps:
-         - uses: action/checkout@v2
+         - uses: actions/checkout@v2
          - name: Run a script
            run: |
              echo "i am running a job in QA environment"
@@ -28,7 +28,7 @@ jobs:
        environment: PROD
        needs: QA
        steps:
-         - uses: action/checkout@v2
+         - uses: actions/checkout@v2
          - name: Run a script
            run: |
              echo "i am running a job in QA environment"
