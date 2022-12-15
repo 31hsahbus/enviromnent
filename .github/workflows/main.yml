@@ -5,11 +5,12 @@ jobs:
     DEV:
        runs-on: ubuntu-latest
        environment: DEV
-       env:
-         DEMO: ${{secrets.MY_SECRET}}
+       
        steps:
          - uses: actions/checkout@v2
          - name: Run a script
+           env:
+            DEMO: ${{secrets.MY_SECRET}}
            run: |
              echo "i am running a job in DEV environment"
              echo "demo value is:${{env.DEMO}}" 
@@ -19,12 +20,13 @@ jobs:
       
        runs-on: ubuntu-latest
        environment: QA
-       env:
-         MSG: COMPLETED 
+       
        needs: DEV
        steps:
          - uses: actions/checkout@v2
          - name: Run a script
+           env:
+            MSG: COMPLETED 
            run: |
              echo "i am running a job in QA environment"
              echo "QA job  is:${{env.MSG}}"
@@ -32,14 +34,15 @@ jobs:
     PROD:
        runs-on: ubuntu-latest
        environment: PROD
-       env: 
-        MSG: Approved
+       
        needs: [ DEV , QA ]
        steps:
          - uses: actions/checkout@v2
          - name: Run a script
+           env: 
+            MSG: Approved
            run: |
-             echo "i am running a job in QA environment"
-             echo "DEMO value  is:${{needs.DEV.env.DEMO}}"
-             echo "QA job  is:${{needs.QA.env.MSG}}"
+             echo "i am running a job in PROD environment"
+             echo "DEMO value  is:${{needs.DEV.steps.env.DEMO}}"
+             echo "QA job  is:${{needs.QA.steps.env.MSG}}"
              echo "PROD job  is:${{env.MSG}}"
