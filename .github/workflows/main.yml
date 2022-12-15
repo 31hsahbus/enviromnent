@@ -16,7 +16,7 @@ jobs:
            env:
             DEMO: ${{secrets.MY_SECRET}}
            run: |
-             echo "hello ,i am running a job in DEV environment, $GRT"
+             echo "hello ,i am running a job in DEV environment, ${{GRT}} "
              echo "demo value is:${{env.DEMO}}" 
              echo "GITHUB_ACTION: ${GITHUB_ACTION}"
              echo "HOME: ${HOME}"
