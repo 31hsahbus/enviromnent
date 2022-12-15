@@ -1,6 +1,8 @@
 name: simple-three-Env
 on:
    workflow_dispatch:
+env:
+  GREET: hello
 jobs:
     DEV:
        runs-on: ubuntu-latest
@@ -12,9 +14,15 @@ jobs:
            env:
             DEMO: ${{secrets.MY_SECRET}}
            run: |
-             echo "i am running a job in DEV environment"
+             echo " $GREET ,i am running a job in DEV environment"
              echo "demo value is:${{env.DEMO}}" 
-
+             echo "GITHUB_ACTION: ${GITHUB_ACTION}"
+             echo "HOME: ${HOME}"
+             echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+             echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+             echo "GITHUB_JOB: ${GITHUB_JOB}"
+             echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+             echo "RUNNER-OS: ${RUNNER_OS}"
 
     QA:
       
@@ -28,8 +36,10 @@ jobs:
            env:
             MSG: COMPLETED 
            run: |
-             echo "i am running a job in QA environment"
-             echo "QA job  is:${{env.MSG}}"
+             echo "$GREET ,i am running a job in QA environment"
+             echo "QA job  is:$MSG , $EXIT"
+       env:
+         EXIT: closing
 
     PROD:
        runs-on: ubuntu-latest
@@ -42,7 +52,7 @@ jobs:
            env: 
             MSG: Approved
            run: |
-             echo "i am running a job in PROD environment"
-             echo "DEMO value  is:${{needs.DEV.steps.env.DEMO}}"
-             echo "QA job  is:${{needs.QA.steps.env.MSG}}"
-             echo "PROD job  is:${{env.MSG}}"
+             echo "$GREET, i am running a job in PROD environment"
+             echo "PROD job  is:$MSG , $EXIT"
+       env:
+         EXIT: closing
