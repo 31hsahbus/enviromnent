@@ -3,7 +3,7 @@ on:
    workflow_dispatch:
    
 env:
- GREET: World
+ GRT: thankyou
  
 jobs:
     DEV:
@@ -16,7 +16,7 @@ jobs:
            env:
             DEMO: ${{secrets.MY_SECRET}}
            run: |
-             echo "hello, $GREET ,i am running a job in DEV environment"
+             echo "hello ,i am running a job in DEV environment, $GRT"
              echo "demo value is:${{env.DEMO}}" 
              echo "GITHUB_ACTION: ${GITHUB_ACTION}"
              echo "HOME: ${HOME}"
@@ -38,7 +38,7 @@ jobs:
            env:
             MSG: COMPLETED 
            run: |
-             echo "hello, $GREET ,i am running a job in QA environment"
+             echo "hello,i am running a job in QA environment, $GRT"
              echo "QA job  is:$MSG , $EXIT"
        env:
          EXIT: closing
@@ -54,7 +54,7 @@ jobs:
            env: 
             MSG: Approved
            run: |
-             echo "hello, $GREET, i am running a job in PROD environment"
+             echo "hello,i am running a job in PROD environment, $GRT"
              echo "PROD job  is:$MSG , $EXIT"
        env:
          EXIT: closing
