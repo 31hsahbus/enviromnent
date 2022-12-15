@@ -5,11 +5,14 @@ jobs:
     DEV:
        runs-on: ubuntu-latest
        environment: DEV
+       env:
+         DEMO: ${{sectet.MY_SECRET}}
        steps:
          - uses: actions/checkout@v2
          - name: Run a script
            run: |
              echo "i am running a job in DEV environment"
+             echo "demo value is:${{DEMO}}" 
 
 
     QA:
