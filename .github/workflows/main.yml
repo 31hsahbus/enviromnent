@@ -6,7 +6,7 @@ jobs:
        runs-on: ubuntu-latest
        environment: DEV
        env:
-         DEMO: ${{secret.MY_SECRET}}
+         DEMO: ${{secrets.MY_SECRET}}
        steps:
          - uses: actions/checkout@v2
          - name: Run a script
