@@ -1,8 +1,10 @@
 name: simple-three-Env
 on:
    workflow_dispatch:
+   
 env:
-  GREET: world
+ GREET: World
+ 
 jobs:
     DEV:
        runs-on: ubuntu-latest
