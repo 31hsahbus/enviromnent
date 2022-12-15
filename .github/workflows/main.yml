@@ -12,7 +12,7 @@ jobs:
          - name: Run a script
            run: |
              echo "i am running a job in DEV environment"
-             echo "demo value is:${{DEMO}}" 
+             echo "demo value is:${{env.DEMO}}" 
 
 
     QA:
