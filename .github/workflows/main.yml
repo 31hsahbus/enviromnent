@@ -1,0 +1,34 @@
+name: simple-three-Env
+on:
+   workflow_dispatch:
+jobs:
+    DEV:
+       runs-on: ubuntu-latest
+       environment: DEV
+       steps:
+         - uses: action/checkout@v2
+         - name: Run a script
+           run: |
+             echo "i am running a job in DEV environment"
+
+
+    QA:
+      
+       runs-on: ubuntu-latest
+       environment: QA
+       needs: DEV
+       steps:
+         - uses: action/checkout@v2
+         - name: Run a script
+           run: |
+             echo "i am running a job in QA environment"
+
+    PROD:
+       runs-on: ubuntu-latest
+       environment: PROD
+       needs: QA
+       steps:
+         - uses: action/checkout@v2
+         - name: Run a script
+           run: |
+             echo "i am running a job in QA environment"
