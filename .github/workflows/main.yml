@@ -34,11 +34,12 @@ jobs:
        environment: PROD
        env: 
         MSG: Approved
-       needs: QA
+       needs: [ DEV , QA ]
        steps:
          - uses: actions/checkout@v2
          - name: Run a script
            run: |
              echo "i am running a job in QA environment"
-             echo "QA job  is:${{needs.QA.env.steps.MSG}}"
+             echo "DEMO value  is:${{needs.DEV.env.DEMO}}"
+             echo "QA job  is:${{needs.QA.env.MSG}}"
              echo "PROD job  is:${{env.MSG}}"
