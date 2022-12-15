@@ -40,6 +40,6 @@ jobs:
          - name: Run a script
            run: |
              echo "i am running a job in QA environment"
-             echo "DEMO value  is:${{DEV.steps.env.DEMO}}"
-             echo "QA job  is:${{QA.steps.env.MSG}}"
+             echo "DEMO value  is:${{DEV.env.steps.DEMO}}"
+             echo "QA job  is:${{QA.env.steps.MSG}}"
              echo "PROD job  is:${{env.MSG}}"
